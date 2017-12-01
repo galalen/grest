@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.galalen.restclient.controllers.MainController">
+   <top>
+      <Pane prefHeight="39.0" prefWidth="696.0" style="-fx-background-color: #0288D1;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="12.0" text="Rest Client" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <bottom>
+      <HBox prefHeight="23.0" prefWidth="700.0" style="-fx-background-color: #0288D1;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="contentType" text="Content Type: text/plain" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="12.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" top="5.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <left>
+      <JFXTextArea id="resultArea" fx:id="resultArea" disable="false" focusColor="#FFF" prefHeight="548.0" prefWidth="450.0" style="-fx-border-radius: 5; -fx-border-color: #0288D1; -fx-border-width: 2;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </JFXTextArea>
+   </left>
+   <right>
+      <VBox prefHeight="558.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="515.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5;">
+               <children>
+                  <ChoiceBox fx:id="cbRequestMethod" prefHeight="25.0" prefWidth="87.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                      <!--<items>-->
+                          <!--<FXCollections fx:factory="observableArrayList">-->
+                              <!--<String fx:value="GET" />-->
+                              <!--<String fx:value="POST" />-->
+                              <!--<String fx:value="PUT" />-->
+                              <!--<String fx:value="DELETE" />-->
+                          <!--</FXCollections>-->
+                      <!--</items>-->
+                  </ChoiceBox>
+                  <TextField fx:id="tfUrl" prefHeight="35.0" prefWidth="360.0" promptText="API URL">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button id="bSend" fx:id="bSend" mnemonicParsing="false" onAction="#sendRequest" style="-fx-background-color: #00BCD4;" text="Send" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <VBox id="paramsBox" fx:id="paramsBox" prefWidth="540.0" style="-: ;">
+               <!-- for params (key/value) -->
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <HBox prefWidth="520.0">
+                     <children>
+                        <JFXTextField prefHeight="30.0" prefWidth="240.0" promptText="Key">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </JFXTextField>
+                        <JFXTextField prefHeight="30.0" prefWidth="240.0" promptText="Value">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </JFXTextField>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+             <Button id="bAddParam" fx:id="bAddParam" mnemonicParsing="false" onAction="#addParam" style="-fx-background-color: #00BCD4;" text="Add Param" textFill="WHITE">
+                 <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                 </padding>
+                 <VBox.margin>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                 </VBox.margin>
+             </Button>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
