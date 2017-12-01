@@ -1,8 +1,6 @@
 package com.galalen.restclient.controllers
 
-import com.galalen.restclient.net.Request
 import com.galalen.restclient.utils.RequestTask
-import com.galalen.restclient.utils.Worker
 import com.jfoenix.controls.JFXDialog
 import com.jfoenix.controls.JFXTextField
 import javafx.collections.FXCollections
@@ -77,7 +75,7 @@ class MainController : Initializable {
 
         val method = cbRequestMethod!!.selectionModel.selectedItem.toString()
         println("starting...\n$method")
-        Worker(method = method, url = url, params = params, view = resultArea).execute()
+        RequestTask(method = method, url = url, params = params, view = resultArea).run()
         println("end")
     }
 

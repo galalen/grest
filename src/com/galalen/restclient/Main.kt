@@ -12,7 +12,7 @@ class Main: Application() {
     override fun start(primaryStage: Stage?) {
         val parent = FXMLLoader.load<Parent>(Main::class.java.getResource("res/layout/main.fxml"))
 
-        val theScene = Scene(parent, 800.0, 500.0)
+        val theScene = Scene(parent, 1000.0, 700.0)
         primaryStage?.run {
             initStyle(StageStyle.DECORATED)
             scene = theScene

@@ -20,7 +20,11 @@ class RequestTask(private val method: String,
     }
 
     override fun succeeded() {
-        view?.text = Request.parseInputStream(get()!!)
+        view?.text = Request.parseInputStream(value!!)
+    }
+
+    override fun failed() {
+        view!!.text = "Something went wrong\n${exception.message}"
     }
 
 }
