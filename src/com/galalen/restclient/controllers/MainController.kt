@@ -1,7 +1,6 @@
 package com.galalen.restclient.controllers
 
 import com.galalen.restclient.utils.RequestTask
-import com.jfoenix.controls.JFXDialog
 import com.jfoenix.controls.JFXTextField
 import javafx.collections.FXCollections
 import javafx.fxml.FXML
@@ -50,6 +49,7 @@ class MainController : Initializable {
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         cbRequestMethod?.items = FXCollections.observableArrayList("GET", "POST", "PUT", "DELETE")
         cbRequestMethod?.value = "GET"
+        
     }
 
     fun sendRequest() {
@@ -57,60 +57,55 @@ class MainController : Initializable {
         var url = tfUrl!!.text.trim().toLowerCase()
 
         if (url.isEmpty()) {
-            val dialog = JFXDialog()
+            resultArea?.text = "URL field can't be empty"
+        } else {
 
-            dialog.content = Label("URL field can not be empty")
-            dialog.show(StackPane())
-        }
-
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            url = "http://" + url
-        }
-
-        if (paramsRef.size > 0) {
-            for ((k, v) in paramsRef) {
-                params.put(k.text.trim().toLowerCase(), v.text.trim().toLowerCase())
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://" + url
             }
-        }
 
-        val method = cbRequestMethod!!.selectionModel.selectedItem.toString()
-        println("starting...\n$method")
-        RequestTask(method = method, url = url, params = params, view = resultArea).run()
-        println("end")
+            if (paramsRef.size > 0) {
+                for ((k, v) in paramsRef) {
+                    params.put(k.text.trim().toLowerCase(), v.text.trim().toLowerCase())
+                }
+            }
+
+            val method = cbRequestMethod!!.selectionModel.selectedItem.toString()
+            RequestTask(method = method, url = url, params = params, view = resultArea).run()
+        }
     }
 
     fun addParam() {
-        println("new param")
         val key = JFXTextField()
         key.padding = Insets(0.0, 20.0, 0.0, 20.0)
         key.focusColor = Paint.valueOf("#00bcd4")
         key.promptText = "Key"
         key.prefHeight = 25.0
-        key.prefWidth = 215.0
+        key.prefWidth = 240.0
 
         val value = JFXTextField()
         value.padding = Insets(0.0, 20.0, 0.0, 20.0)
         value.promptText = "Value"
         value.focusColor = Paint.valueOf("#00bcd4")
         value.prefHeight = 25.0
-        value.prefWidth = 215.0
+        value.prefWidth = 240.0
 
         paramsRef.put(key, value)
-        println("Count paramsRef: ${paramsRef.size}")
         updateParamsBox()
     }
 
     private fun updateParamsBox() {
+        paramsBox!!.children.clear()
         for ((k, v) in paramsRef) {
             val box = HBox()
             box.padding = Insets(10.0, 0.0, 10.0, 0.0)
-//            box.style = "-fx-background-color: #eaeaea; -fx-background-radius: 5;"
             box.prefHeight = 46.0
-            box.prefWidth = 470.0
+            box.prefWidth = 520.0
             box.children.addAll(k, v)
             paramsBox!!.children.add(box)
         }
 
     }
+
 
 }

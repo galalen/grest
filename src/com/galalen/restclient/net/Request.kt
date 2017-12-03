@@ -21,7 +21,7 @@ object Request {
     fun post(url: String, params: Map<String, Any>? = null): InputStream? {
         val mURL = URL(url)
         val http = mURL.openConnection() as HttpURLConnection
-//        http.setRequestProperty("", "")
+
         http.requestMethod = Method.POST.toString()
         http.doOutput = true
         http.doInput = true
@@ -66,4 +66,56 @@ object Request {
         }
         return content
     }
+
+
+    fun put(url: String, params: Map<String, Any>? = null): InputStream? {
+        val mURL = URL(url)
+        val http = mURL.openConnection() as HttpURLConnection
+
+        http.requestMethod = Method.PUT.toString()
+        http.doOutput = true
+        http.doInput = true
+
+        if (params != null && params.isNotEmpty()) {
+            var writer: OutputStreamWriter? = null
+            try {
+                writer = OutputStreamWriter(http.outputStream)
+                val stringParams = params.contactParams()
+                writer.write(stringParams)
+                writer.flush()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                writer?.close()
+            }
+        }
+
+        return http.inputStream
+    }
+
+    fun delete(url: String, params: Map<String, Any>? = null): InputStream? {
+        val mURL = URL(url)
+        val http = mURL.openConnection() as HttpURLConnection
+
+        http.requestMethod = Method.DELETE.toString()
+        http.doOutput = true
+        http.doInput = true
+
+        if (params != null && params.isNotEmpty()) {
+            var writer: OutputStreamWriter? = null
+            try {
+                writer = OutputStreamWriter(http.outputStream)
+                val stringParams = params.contactParams()
+                writer.write(stringParams)
+                writer.flush()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                writer?.close()
+            }
+        }
+
+        return http.inputStream
+    }
+
 }

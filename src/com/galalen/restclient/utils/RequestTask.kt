@@ -13,8 +13,10 @@ class RequestTask(private val method: String,
 
     override fun call(): InputStream? {
         return when (method) {
-            Request.Method.POST.toString() -> Request.post(url, params)
             Request.Method.GET.toString() -> Request.get(url, params)
+            Request.Method.POST.toString() -> Request.post(url, params)
+            Request.Method.PUT.toString() -> Request.put(url, params)
+            Request.Method.DELETE.toString() -> Request.delete(url, params)
             else -> null
         }
     }
@@ -24,7 +26,7 @@ class RequestTask(private val method: String,
     }
 
     override fun failed() {
-        view!!.text = "Something went wrong\n${exception.message}"
+        view!!.text = "Something went wrong\n${exception}"
     }
 
 }

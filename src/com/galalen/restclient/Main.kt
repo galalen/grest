@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import javafx.stage.StageStyle
 
 class Main: Application() {
 
@@ -14,12 +13,11 @@ class Main: Application() {
 
         val theScene = Scene(parent, 1000.0, 700.0)
         primaryStage?.run {
-            initStyle(StageStyle.DECORATED)
             scene = theScene
-//            initStyle(StageStyle.UNDECORATED)
             isResizable = false
             show()
         }
+
     }
 
     fun run() = launch(Main::class.java)
