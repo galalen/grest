@@ -4,7 +4,7 @@
 #### GRest is a rest API client powered by [Kotlin](https://kotlinlang.org/).
 
 #### Screenshot:
-![screenshot][screenshots/main.png]
+![screenshot][main.png]
 
  Supported method:
 -----------------
