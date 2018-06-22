@@ -14,4 +14,4 @@
 > 4. **PUT**.
 
 ----------------------
-You can check [my site](http://mg.heliohost.org) to see amazing thing **:)** .
+You can check [my site](https:galalen.github.io) to see amazing thing **:)** .
